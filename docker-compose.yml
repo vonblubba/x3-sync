@@ -1,0 +1,16 @@
+services:
+  x3-sync:
+    build: .
+    image: x3-sync:latest
+    container_name: x3-sync
+    restart: unless-stopped
+    environment:
+      - X3_HOST=192.168.1.50        # DHCP reservation for the X3
+      - SETTLE_SECONDS=300          # let CWA finish metadata/conversion first
+      - POLL_INTERVAL=30
+      - PATH_TEMPLATE={author}/{title}
+      - TZ=Europe/Rome
+    volumes:
+      # Same library folder CWA uses; read-only is enough.
+      - /mnt/user/appdata/calibre/library:/calibre-library:ro
+      - /mnt/user/appdata/x3-sync:/config

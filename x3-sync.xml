@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>x3-sync</Name>
+  <Repository>x3-sync:latest</Repository>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Overview>Sends new EPUBs from the Calibre library to a CrossPoint-flashed Xteink X3, optimized for its 528x792 screen, whenever the X3 is on the File Transfer screen.</Overview>
+  <Category>Tools:</Category>
+  <Config Name="Calibre library" Target="/calibre-library" Default="/mnt/user/appdata/calibre/library" Mode="ro" Description="Folder containing metadata.db (the same one CWA uses)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/calibre/library</Config>
+  <Config Name="State" Target="/config" Default="/mnt/user/appdata/x3-sync" Mode="rw" Description="Holds state.json (which books were already sent)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/x3-sync</Config>
+  <Config Name="X3 IP address" Target="X3_HOST" Default="" Mode="" Description="Fixed IP of the X3 (set a DHCP reservation). Leave empty only on br0/host networking." Type="Variable" Display="always" Required="false" Mask="false"></Config>
+  <Config Name="Settle seconds" Target="SETTLE_SECONDS" Default="300" Mode="" Description="Wait this long after a book was last modified before sending it" Type="Variable" Display="always" Required="false" Mask="false">300</Config>
+  <Config Name="Poll interval" Target="POLL_INTERVAL" Default="30" Mode="" Description="Seconds between checks" Type="Variable" Display="always" Required="false" Mask="false">30</Config>
+  <Config Name="Seed existing library" Target="SEED_EXISTING" Default="true" Mode="" Description="On first run, treat books already in the library as sent" Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+  <Config Name="Optimize" Target="OPTIMIZE" Default="true" Mode="" Description="Optimize EPUBs for the X3 before upload" Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+  <Config Name="JPEG quality" Target="JPEG_QUALITY" Default="85" Mode="" Description="1-100" Type="Variable" Display="advanced" Required="false" Mask="false">85</Config>
+  <Config Name="Auto-crop margins" Target="AUTO_CROP" Default="false" Mode="" Description="Trim uniform borders from images" Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="Split text" Target="SPLIT_TEXT" Default="true" Mode="" Description="Split large paragraphs/chapters and strip fonts (prevents out-of-memory)" Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+  <Config Name="Path template" Target="PATH_TEMPLATE" Default="{author}/{title}" Mode="" Description="Folders/filename on the X3, each / is a folder. Fields: {author} {author_sort} {authors} {title} {id}" Type="Variable" Display="always" Required="false" Mask="false">{author}/{title}</Config>
+  <Config Name="Upload folder" Target="UPLOAD_DIR" Default="/" Mode="" Description="Base folder on the X3's SD card" Type="Variable" Display="advanced" Required="false" Mask="false">/</Config>
+  <Config Name="ASCII names" Target="ASCII_NAMES" Default="false" Mode="" Description="Transliterate folder/file names to plain ASCII" Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="Overwrite existing" Target="OVERWRITE_EXISTING" Default="false" Mode="" Description="If the file is already on the X3: false = skip, true = replace" Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="Debug" Target="DEBUG" Default="false" Mode="" Description="Verbose logging" Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Rome" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">Europe/Rome</Config>
+</Container>
